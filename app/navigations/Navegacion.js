@@ -4,8 +4,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
 import Home from "../screens/home";
 import Calificaciones from "../screens/Calificaciones";
-import Docentes from "../screens/Docentes";
+
 import RutasCuentas from "./RutasCuenta";
+import RutasDocentes from "./RutasDocentes";
+import RutasAlumnos from "./RutasAlumnos";
+import Alumnos from "../screens/Alumnos/Alumnos";
 
 const Tab = createBottomTabNavigator();
 
@@ -39,9 +42,14 @@ export default function Navegacion() {
           options={{ title: "Calificaciones" }}
         />
         <Tab.Screen
+          name="alumnos"
+          component={RutasAlumnos}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
           name="docentes"
-          component={Docentes}
-          options={{ title: "Docentes asignados" }}
+          component={RutasDocentes}
+          options={{ headerShown: false }}
         />
         <Tab.Screen
           name="cuentas"
@@ -63,6 +71,9 @@ function opciones(ruta, color) {
       break;
     case "calificaciones":
       iconName = "class";
+      break;
+    case "alumnos":
+      iconName = "people";
       break;
     case "docentes":
       iconName = "assignment-ind";
