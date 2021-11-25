@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Image } from "react-native-elements";
 import { size } from "lodash";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ListaAlumnos(propiedades) {
   const { alumnos } = propiedades;
@@ -34,11 +35,14 @@ export default function ListaAlumnos(propiedades) {
 function Alumnos(propiedades) {
   const { alumnos } = propiedades;
 
-  const { nombre, apMat, apPat, grupo, matricula, perfil, creado } =
+  const { nombre, apMat, apPat, grupo, matricula, perfil, creado, id } =
     alumnos.item;
 
+  //definimos el acceso a las rutas de alumnos
+  const navegacion = useNavigation();
+
   const consultarAlumno = () => {
-    console.log("consultando");
+    navegacion.navigate("ver_alumno", { id, nombre });
   };
   return (
     <TouchableOpacity onPress={consultarAlumno}>

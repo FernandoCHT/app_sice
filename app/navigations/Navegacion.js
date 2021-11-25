@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
@@ -9,6 +9,11 @@ import RutasCuentas from "./RutasCuenta";
 import RutasDocentes from "./RutasDocentes";
 import RutasAlumnos from "./RutasAlumnos";
 import Alumnos from "../screens/Alumnos/Alumnos";
+
+import { firebaseApp } from "../utils/firebase";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+const db = firebase.firestore(firebaseApp);
 
 const Tab = createBottomTabNavigator();
 
@@ -46,11 +51,13 @@ export default function Navegacion() {
           component={RutasAlumnos}
           options={{ headerShown: false }}
         />
+
         <Tab.Screen
           name="docentes"
           component={RutasDocentes}
           options={{ headerShown: false }}
         />
+
         <Tab.Screen
           name="cuentas"
           component={RutasCuentas}
