@@ -77,7 +77,7 @@ export default function Docente(propiedades) {
 }
 
 function Informacion(propiedades) {
-  const { nombre, correo, telefono, perfil } = propiedades;
+  const { nombre, correo, telefono, grupos, perfil } = propiedades;
   const listaItems = [
     //podemos agregar multiples valores como no tenemos mas datos en la bd
     //colocaremos datos fijos para ejemplificar
@@ -90,6 +90,16 @@ function Informacion(propiedades) {
     {
       text: correo,
       iconName: "at",
+      iconType: "material-community",
+      action: null,
+    },
+  ];
+  const listaItems2 = [
+    //podemos agregar multiples valores como no tenemos mas datos en la bd
+    //colocaremos datos fijos para ejemplificar
+    {
+      text: grupos,
+      iconName: "phone",
       iconType: "material-community",
       action: null,
     },
@@ -115,6 +125,19 @@ function Informacion(propiedades) {
             </ListItem.Content>
           </ListItem>
         ))}
+
+        <View style={{ flexDirection: "row" }}>
+          <Text style={styles.correo}>Informacion</Text>
+
+          {listaItems2.map((item, index) => (
+            <ListItem key={index} containerStyle={styles.listaInfo}>
+              <Icon name={item.iconName} type={item.iconType} color="#0A6ED3" />
+              <ListItem.Content>
+                <ListItem.Title>{item.text}</ListItem.Title>
+              </ListItem.Content>
+            </ListItem>
+          ))}
+        </View>
       </View>
     </View>
   );

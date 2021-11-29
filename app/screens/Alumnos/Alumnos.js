@@ -17,7 +17,7 @@ export default function Alumnos() {
   //useState para mantener el control de las sucursales a mostrar
   const [puntero, setPuntero] = useState(null);
 
-  //Consultando sucursales
+  //Consultando alumnos
   useEffect(() => {
     /*accedemos a la colección de sucursales, consultamos los registros
     con get y atrapamos la respuesta (se retorna una promesa con la lista sucursales)

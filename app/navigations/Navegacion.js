@@ -9,6 +9,7 @@ import RutasCuentas from "./RutasCuenta";
 import RutasDocentes from "./RutasDocentes";
 import RutasAlumnos from "./RutasAlumnos";
 import Alumnos from "../screens/Alumnos/Alumnos";
+import Busquedas from "../screens/Busquedas";
 
 import { firebaseApp } from "../utils/firebase";
 import firebase from "firebase/compat/app";
@@ -57,6 +58,11 @@ export default function Navegacion() {
           component={RutasDocentes}
           options={{ headerShown: false }}
         />
+        <Tab.Screen
+          name="busquedas"
+          component={Busquedas}
+          options={{ title: "Busquedas" }}
+        />
 
         <Tab.Screen
           name="cuentas"
@@ -84,6 +90,9 @@ function opciones(ruta, color) {
       break;
     case "docentes":
       iconName = "assignment-ind";
+      break;
+    case "busquedas":
+      iconName = "search";
       break;
     case "cuentas":
       iconName = "person";

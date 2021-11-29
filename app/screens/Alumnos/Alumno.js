@@ -11,6 +11,8 @@ import { firebaseApp } from "../../utils/firebase";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
+import Calificaciones from "../../components/Alumnos/Calificaciones";
+
 const db = firebase.firestore(firebaseApp);
 //Obtenemos el ancho de la ventana del dispositivo
 
@@ -61,6 +63,15 @@ export default function Alumno(propiedades) {
             telefono={alumno.telefono}
             perfil={alumno.perfil}
             correo={alumno.correo}
+          />
+
+          {/*Incrustamos la vista de acceso a la votación
+ enviamos la navegación actual para poder regresar
+ el id de la sucursal a la que pertenecen los comentarios*/}
+          <Calificaciones
+            navigation={navigation}
+            id={alumno.id}
+            nombre={alumno.nombre}
           />
         </ScrollView>
       ) : (
