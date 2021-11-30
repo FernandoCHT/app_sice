@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { Button, Rating } from "react-native-elements";
+import { Button, Rating, Icon } from "react-native-elements";
 import { map } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,8 +11,8 @@ import "firebase/compat/firestore";
 const db = firebase.firestore(firebaseApp);
 
 function Calificacion(propiedades) {
-  const { navigation, id } = propiedades;
-  const { title, createAt, calificacion } = propiedades.review;
+  const { navigation, id1 } = propiedades;
+  const { id, title, createAt, calificacion, modificado } = propiedades.review;
   //Convertimos la fecha Timestamp de firebase a una fecha de JavaScript
   //Con una precision de millisecond.
   const createReview = new Date(createAt.seconds * 1000);
@@ -22,7 +22,19 @@ function Calificacion(propiedades) {
 
   const navegacion = useNavigation();
   const consultarRestaurante = () => {
-    navegacion.navigate("edit-calif-alumno", { id, title });
+    navegacion.navigate("edit-calif-alumno", { id, title, calificacion });
+  };
+
+  const eliminar = () => {
+    db.collection("calificaciones")
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log("calificacion eliminada: ");
+      })
+      .catch((error) => {
+        console.error("Error al eliminar la calificacion: " + error);
+      });
   };
 
   return (
@@ -31,6 +43,11 @@ function Calificacion(propiedades) {
         <View style={styles.viewInfo}>
           <Text style={styles.reviewTitle}>{title}</Text>
           <Text style={styles.reviewText}>{calificacion}</Text>
+          {modificado ? (
+            <Text style={styles.reviewM}>Modificada</Text>
+          ) : (
+            <Text />
+          )}
           <Text style={styles.reviewDate}>
             {/*Extraemeo de la fecha los valores por separado */}
             {createReview.getDate()}/{createReview.getMonth() + 1}/
@@ -38,6 +55,13 @@ function Calificacion(propiedades) {
             {createReview.getMinutes() < 10 ? "0" : ""}
             {createReview.getMinutes()}
           </Text>
+          <Icon
+            raised
+            name="trash"
+            type="font-awesome"
+            color="#f50"
+            onPress={eliminar}
+          />
         </View>
       </View>
     </TouchableOpacity>
@@ -83,7 +107,7 @@ export default function Reviews(propiedades) {
         aparecerá un botón para abrir la ventana de votación*/}
       {userLogged ? (
         <Button
-          title="Escribe una opinión"
+          title="Capturar calificación"
           buttonStyle={styles.btnAddReview}
           titleStyle={styles.btnTitleAddReview}
           icon={{
@@ -147,6 +171,13 @@ const styles = StyleSheet.create({
   reviewText: {
     paddingTop: 2,
     color: "grey",
+    marginBottom: 5,
+  },
+  reviewM: {
+    paddingTop: 2,
+    color: "grey",
+    position: "absolute",
+    right: 0,
     marginBottom: 5,
   },
   reviewDate: {

@@ -64,6 +64,7 @@ export default function Docente(propiedades) {
             correo={docente.correo}
             telefono={docente.telefono}
             perfil={docente.perfil}
+            grupos={docente.grupos}
           />
         </ScrollView>
       ) : (
@@ -98,8 +99,8 @@ function Informacion(propiedades) {
     //podemos agregar multiples valores como no tenemos mas datos en la bd
     //colocaremos datos fijos para ejemplificar
     {
-      text: grupos,
-      iconName: "phone",
+      text: "Grupos asignados: " + grupos,
+
       iconType: "material-community",
       action: null,
     },
@@ -128,16 +129,15 @@ function Informacion(propiedades) {
 
         <View style={{ flexDirection: "row" }}>
           <Text style={styles.correo}>Informacion</Text>
-
-          {listaItems2.map((item, index) => (
-            <ListItem key={index} containerStyle={styles.listaInfo}>
-              <Icon name={item.iconName} type={item.iconType} color="#0A6ED3" />
-              <ListItem.Content>
-                <ListItem.Title>{item.text}</ListItem.Title>
-              </ListItem.Content>
-            </ListItem>
-          ))}
         </View>
+        {listaItems2.map((item, index) => (
+          <ListItem key={index} containerStyle={styles.listaInfo}>
+            <Icon name={item.iconName} type={item.iconType} color="#0A6ED3" />
+            <ListItem.Content>
+              <ListItem.Title>{item.text}</ListItem.Title>
+            </ListItem.Content>
+          </ListItem>
+        ))}
       </View>
     </View>
   );
