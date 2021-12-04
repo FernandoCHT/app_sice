@@ -62,15 +62,18 @@ function NoFound() {
 function Alumno(propiedades) {
   const { alumno, navigation } = propiedades;
 
-  const { id, nombre, grupo, apPat } = alumno.item;
+  const { id, nombre, grupo, apPat, apMat, matricula } = alumno.item;
 
   return (
     <ListItem onPress={() => navigation.navigate("ver_alumno", { id, nombre })}>
       <ListItem.Content>
         <ListItem.Title>
-          {nombre} {apPat}
+          {nombre} {apPat} {apMat}
         </ListItem.Title>
         <Text style={{ paddingTop: 2, color: "grey" }}>Grupo:{grupo} </Text>
+        <Text style={{ paddingTop: 2, color: "grey" }}>
+          Matricula:{matricula}
+        </Text>
       </ListItem.Content>
       <Icon type="material-community" name="chevron-right" />
     </ListItem>

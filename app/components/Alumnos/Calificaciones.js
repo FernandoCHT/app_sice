@@ -25,6 +25,16 @@ function Calificacion(propiedades) {
     navegacion.navigate("edit-calif-alumno", { id, title, calificacion });
   };
 
+  //useState de sesión
+  const [usuario, setUsuario] = useState(null);
+  //validamos sesión existente
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((userInfo) => {
+      //si existe una sesión activa asignamos los datos de sesión al useState usuario
+      setUsuario(userInfo);
+    });
+  }, []);
+
   const eliminar = () => {
     db.collection("calificaciones")
       .doc(id)
@@ -39,31 +49,33 @@ function Calificacion(propiedades) {
 
   return (
     <TouchableOpacity onPress={consultarRestaurante}>
-      <View style={styles.viewReview}>
-        <View style={styles.viewInfo}>
-          <Text style={styles.reviewTitle}>{title}</Text>
-          <Text style={styles.reviewText}>{calificacion}</Text>
-          {modificado ? (
-            <Text style={styles.reviewM}>Modificada</Text>
-          ) : (
-            <Text />
-          )}
-          <Text style={styles.reviewDate}>
-            {/*Extraemeo de la fecha los valores por separado */}
-            {createReview.getDate()}/{createReview.getMonth() + 1}/
-            {createReview.getFullYear()} - {createReview.getHours()}:
-            {createReview.getMinutes() < 10 ? "0" : ""}
-            {createReview.getMinutes()}
-          </Text>
-          <Icon
-            raised
-            name="trash"
-            type="font-awesome"
-            color="#f50"
-            onPress={eliminar}
-          />
+      {usuario && (
+        <View style={styles.viewReview}>
+          <View style={styles.viewInfo}>
+            <Text style={styles.reviewTitle}>{title}</Text>
+            <Text style={styles.reviewText}>{calificacion}</Text>
+            {modificado ? (
+              <Text style={styles.reviewM}>Modificada</Text>
+            ) : (
+              <Text />
+            )}
+            <Text style={styles.reviewDate}>
+              {/*Extraemeo de la fecha los valores por separado */}
+              {createReview.getDate()}/{createReview.getMonth() + 1}/
+              {createReview.getFullYear()} - {createReview.getHours()}:
+              {createReview.getMinutes() < 10 ? "0" : ""}
+              {createReview.getMinutes()}
+            </Text>
+            <Icon
+              raised
+              name="trash"
+              type="font-awesome"
+              color="#f50"
+              onPress={eliminar}
+            />
+          </View>
         </View>
-      </View>
+      )}
     </TouchableOpacity>
   );
 }

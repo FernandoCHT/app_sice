@@ -36,6 +36,7 @@ export default function AddCalificacion(propiedades) {
           title: title1,
           modificado: true,
           calificacion: calificacion1,
+          createAt: new Date(),
         })
         .then(() => {
           //cuando se realiza la actualización se envia a la ventana anterior

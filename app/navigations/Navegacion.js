@@ -42,11 +42,7 @@ export default function Navegacion() {
           component={Home}
           options={{ title: "Inicio" }}
         />
-        <Tab.Screen
-          name="calificaciones"
-          component={Calificaciones}
-          options={{ title: "Calificaciones" }}
-        />
+
         <Tab.Screen
           name="alumnos"
           component={RutasAlumnos}
