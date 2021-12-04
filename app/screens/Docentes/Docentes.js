@@ -68,7 +68,7 @@ export default function Docentes() {
     <View style={styles.vista}>
       <ListaDocentes docentes={docentes} />
       {/*Colocaremos un botón de agregar nuevo docente*/}
-      {/*{usuario && (
+      {usuario && (
         <Icon
           reverse
           type="material_community"
@@ -78,7 +78,7 @@ export default function Docentes() {
           //Vinculamos el envió a la ruta agregar-suc
           onPress={() => navegacion.navigate("agregar-doc")}
         />
-      )}*/}
+      )}
     </View>
   );
 }

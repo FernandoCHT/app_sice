@@ -9,7 +9,7 @@ export default function Invitados() {
   return (
     <ScrollView centerContent={true} style={styles.body}>
       <Image
-        source={require("../../../assets/img/fondo.png")}
+        source={require("../../../assets/img/logosice.png")}
         resizeMethod="auto"
         style={styles.imagen}
       />
