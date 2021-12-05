@@ -24,7 +24,6 @@ export default function Login() {
       </View>
       <Toast ref={toastRef} position="center" opacity={0.9} />
       <Divider style={styles.divider} />
-      <Text>Social Login</Text>
     </ScrollView>
   );
 }

@@ -36,7 +36,8 @@ function Docentes(propiedades) {
   //Recibe la lista de sucursales
   const { docentes } = propiedades;
   //en cada iteración obtiene los datos de la sucursal
-  const { imagenes, nombre, correo, telefono, id } = docentes.item;
+  const { imagenes, nombre, apPat, apMat, correo, telefono, id } =
+    docentes.item;
   //definimos el acceso a las rutas de docentes
   const navegacion = useNavigation();
   //Método que se ejecutará al dar clic a los items de la lista
@@ -67,7 +68,11 @@ function Docentes(propiedades) {
         {/*Mostramos los datos adicionales de la sucursal, en el caso de la descripción dado que puede ser
  larga limitamos el texto a mostrar*/}
         <View>
-          <Text style={styles.nombre}>{nombre}</Text>
+          <Text style={styles.nombre}>
+            {nombre} {""}
+            {apPat} {""}
+            {apMat}
+          </Text>
           <Text style={styles.correo}>{correo}</Text>
           <Text style={styles.telefono}>{telefono}</Text>
         </View>

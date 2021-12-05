@@ -61,6 +61,8 @@ export default function Docente(propiedades) {
 
           <Informacion
             nombre={docente.nombre}
+            apPat={docente.apPat}
+            apMat={docente.apMat}
             correo={docente.correo}
             telefono={docente.telefono}
             perfil={docente.perfil}
@@ -78,7 +80,8 @@ export default function Docente(propiedades) {
 }
 
 function Informacion(propiedades) {
-  const { nombre, correo, telefono, grupos, perfil } = propiedades;
+  const { nombre, apPat, apMat, correo, telefono, grupos, perfil } =
+    propiedades;
   const listaItems = [
     //podemos agregar multiples valores como no tenemos mas datos en la bd
     //colocaremos datos fijos para ejemplificar
@@ -109,7 +112,9 @@ function Informacion(propiedades) {
   return (
     <View style={styles.viewSucursal}>
       <View style={{ flexDirection: "row" }}>
-        <Text style={styles.nombre}>{nombre}</Text>
+        <Text style={styles.nombre}>
+          {nombre} {apPat} {apMat}
+        </Text>
       </View>
       <View style={{ flexDirection: "row" }}>
         <Text style={styles.correo}>Contacto</Text>
@@ -157,7 +162,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   nombre: {
-    fontSize: 20,
+    fontSize: 19,
     fontWeight: "bold",
   },
   correo: {

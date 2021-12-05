@@ -28,9 +28,9 @@ export default function AddCalificacion(propiedades) {
   const addRevew = () => {
     //valida que se llenen todos los campos
     if (!title) {
-      toastRef.current.show("El titulo es oblogatorio");
+      toastRef.current.show("No puedes dejar el campo vacío");
     } else if (!calificacion) {
-      toastRef.current.show("El comentario es obligatorio");
+      toastRef.current.show("Debes asignar una calificación");
     } else {
       //si todos los datos son correctos
       setIsLoading(true);
