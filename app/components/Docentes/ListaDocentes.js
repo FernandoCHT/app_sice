@@ -33,9 +33,9 @@ export default function ListaDocentes(propiedades) {
 }
 
 function Docentes(propiedades) {
-  //Recibe la lista de sucursales
+  //Recibe la lista de docentes
   const { docentes } = propiedades;
-  //en cada iteración obtiene los datos de la sucursal
+  //en cada iteración obtiene los datos del docente
   const { imagenes, nombre, apPat, apMat, correo, telefono, id } =
     docentes.item;
   //definimos el acceso a las rutas de docentes
@@ -50,10 +50,7 @@ function Docentes(propiedades) {
       {/*Esturctura de cada item */}
       <View style={styles.lista}>
         <View style={styles.viewImagen}>
-          {/*cover escala la imagen de forma uniforme para evitar distorsión
- PlaceholderContent mostrará un spiner si tarda la carga de imagen
- source define que se mostrará la imagen 0 del arreglo de imágenes guardadas, si sucediera que
- no hay imagen se muestra la imagen no-encontrada cargada en el proyecto*/}
+          
           <Image
             resizeMode="cover"
             PlaceholderContent={<ActivityIndicator color="#0000ff" />}
@@ -65,8 +62,7 @@ function Docentes(propiedades) {
             style={styles.imagen}
           />
         </View>
-        {/*Mostramos los datos adicionales de la sucursal, en el caso de la descripción dado que puede ser
- larga limitamos el texto a mostrar*/}
+       
         <View>
           <Text style={styles.nombre}>
             {nombre} {""}
